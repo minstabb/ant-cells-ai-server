@@ -4,11 +4,11 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    MYSQL_USER: str
-    MYSQL_PASSWORD: str
-    MYSQL_HOST: str
-    MYSQL_PORT: int
-    MYSQL_DATABASE: str
+    mysql_user: str
+    mysql_password: str
+    mysql_host: str
+    mysql_port: int
+    mysql_schema: str
 
     model_config = {
         "env_file": ".env",
@@ -20,3 +20,6 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
+
+settings = get_settings()
+print(Settings().model_dump())
